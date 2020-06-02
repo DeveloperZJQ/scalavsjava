@@ -6,6 +6,8 @@ package firstblood
  * compare loop function about while and for use java
  */
 class Test01 {
+  private val age = 0
+  private val name = "zhangsan"
   def waterMelon(s: String): String ={
     if(s.length>5){
       "five"
@@ -16,12 +18,10 @@ class Test01 {
 }
 
 object Test01{
-  private val t = new Test01()
   def main(args: Array[String]): Unit = {
+    val t = new Test01()
     val start1 = System.currentTimeMillis()
-    for(a<-1 to 1000){
-      println("---------463----------->"+a)
-    }
+    for(a<-1 to 1000){println("---------463----------->"+a)}
     val end1    = System.currentTimeMillis()
     val start2  = System.currentTimeMillis()
     var a =1000;

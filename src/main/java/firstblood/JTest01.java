@@ -23,5 +23,6 @@ public class JTest01 {
 
         System.out.println("end-start---------1-------->"+(end1-start1));
         System.out.println("end-start---------2-------->"+(end2-start2));
+        String a1 = new TestFourPackageType().a;
     }
 }
