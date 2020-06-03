@@ -12,6 +12,7 @@ public class FoundLostNumber {
 
     /**
      * by bitmap to resolve question
+     * 如何在给定的1到100的整数数组中找到缺失的数字？
      * @param args
      */
     public static void main(String[] args) {
