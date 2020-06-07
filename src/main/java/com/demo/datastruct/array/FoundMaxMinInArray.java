@@ -1,4 +1,4 @@
-package datastruct.array;
+package com.demo.datastruct.array;
 
 /**
  * @author happy
