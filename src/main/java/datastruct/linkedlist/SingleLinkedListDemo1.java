@@ -6,10 +6,10 @@ package datastruct.linkedlist;
  */
 public class SingleLinkedListDemo1 {
     public static void main(String[] args) {
-        HeroNode heroNode1 = new HeroNode(1, "宋江", "及时雨");
-        HeroNode heroNode2 = new HeroNode(2, "", "");
-        HeroNode heroNode3 = new HeroNode(3, "", "");
-        HeroNode heroNode4 = new HeroNode(4, "", "");
+        HeroNode heroNode1 = new HeroNode(2, "宋江", "及时雨");
+        HeroNode heroNode2 = new HeroNode(3, "", "");
+        HeroNode heroNode3 = new HeroNode(4, "", "");
+        HeroNode heroNode4 = new HeroNode(5, "", "");
 
         SingleLinkList singleLinkList = new SingleLinkList();
         //添加结点
@@ -17,6 +17,8 @@ public class SingleLinkedListDemo1 {
         singleLinkList.add(heroNode2);
         singleLinkList.add(heroNode3);
         singleLinkList.add(heroNode4);
+
+        singleLinkList.list();
     }
 }
 
@@ -56,9 +58,11 @@ class SingleLinkList{
         HeroNode temp = head;
         while (true){
             if (temp.next==null){
+                System.out.println("this is="+temp.id);
                 break;
             }
             temp = temp.next;
+            System.out.println("this is="+temp.id);
         }
         temp.next = heroNode;
     }
