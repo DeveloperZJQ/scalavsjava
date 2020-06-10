@@ -15,4 +15,5 @@ package datastruct.linkedlist;
  */
 
 public class LoopLinkedList {
+
 }
