@@ -1,4 +1,4 @@
-package datastruct.linkedlist;
+package com.demo.datastruct.linkedlist;
 /**
  * @author happy
  * @create 2020-06-07 17:57

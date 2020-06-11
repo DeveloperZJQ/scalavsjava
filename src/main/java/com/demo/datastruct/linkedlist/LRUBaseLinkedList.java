@@ -1,4 +1,4 @@
-package datastruct.linkedlist;
+package com.demo.datastruct.linkedlist;
 
 import java.util.Scanner;
 /**
