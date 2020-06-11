@@ -1,6 +1,6 @@
 package datastruct.linkedlist;
 
-
+import java.util.Scanner;
 /**
  * @author happy
  * @create 2020-06-11
@@ -19,13 +19,10 @@ package datastruct.linkedlist;
 public class LRUBaseLinkedList<T> {
     //默认节点容量
     private final static Integer DEFAULT_CAPACITY   =   10;
-
     //头节点
     private SNode<T> headNode;
-
     //链表长度
     private Integer length;
-
     //链表容量
     private Integer capacity;
 
@@ -43,8 +40,31 @@ public class LRUBaseLinkedList<T> {
 
     public void add(T data){
         SNode preNode = findPreNode(data);
+        //链表中存在，删除原数据，再插入到链表的头部
+        if(preNode!=null){
+            deleteElemOptim(preNode);
+            intsertElemAtBegin(data);
+        }else {
+            if (length>=this.capacity){
+                deleteElemAtEnd();//删除尾节点
+            }
+            intsertElemAtBegin(data);
+        }
+    }
 
+    //删除preNode节点的下一个元素
+    private void deleteElemOptim(SNode preNode){
+        SNode temp = preNode.getNext();
+        preNode.setNext(temp.getNext());
+        temp = null;
+        length--;
+    }
 
+    //链表头部插入节点
+    private void intsertElemAtBegin(T data){
+        SNode next = headNode.getNext();
+        headNode.setNext(new SNode(data,next));
+        length++;
     }
 
     //获取查到元素的第一个节点
@@ -58,6 +78,33 @@ public class LRUBaseLinkedList<T> {
         }
         return null;
     }
+
+    //删除尾节点
+    private void deleteElemAtEnd(){
+        SNode  ptr = headNode;
+        if (ptr.getNext()==null) {//空链表直接返回
+            return;
+        }
+        while (ptr.getNext().getNext()!=null){//倒数第二个节点
+            ptr = ptr.getNext();
+        }
+
+        SNode tmp = ptr.getNext();
+        ptr.setNext(null);
+        tmp = null;
+        length--;
+    }
+    //打印
+    public  void printAll(){
+        SNode node = headNode.getNext();
+        while (node!=null){
+            System.out.print(node.getElements()+",");
+            node = node.getNext();
+        }
+        System.out.println();
+    }
+
+    //节点信息
     public class SNode<T>{
         private T elements;
         private SNode next;
@@ -77,17 +124,23 @@ public class LRUBaseLinkedList<T> {
         public T getElements() {
             return elements;
         }
-
         public void setElements(T elements) {
             this.elements = elements;
         }
-
         public SNode getNext() {
             return next;
         }
-
         public void setNext(SNode next) {
             this.next = next;
+        }
+    }
+
+    public static void main(String[] args) {
+        LRUBaseLinkedList list = new LRUBaseLinkedList();
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            list.add(sc.nextInt());
+            list.printAll();
         }
     }
 }
