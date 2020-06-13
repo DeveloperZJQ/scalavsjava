@@ -34,7 +34,7 @@ object CollectionDemo {
     val ints = Seq(1, 2, 3, 4)
 
     //Stream
-    println(Stream(1,_))
+//    println(Stream(1,_))
 
     //Try... Success and Failure
     val input   = " 123 "
