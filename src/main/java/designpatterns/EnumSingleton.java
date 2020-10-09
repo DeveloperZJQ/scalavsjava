@@ -1,5 +1,9 @@
 package designpatterns;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  * @author happy
  * @since 2020-10-09
@@ -8,5 +12,16 @@ package designpatterns;
  */
 public enum  EnumSingleton {
     INSTANCE;
-    public void m(){}
+    //get local file config
+    public Properties getFileConfig(String fileName){
+        Properties pro = new Properties();
+        InputStream resourceAsStream = LazyOf2LockSingleton.class.getClassLoader().getResourceAsStream(fileName);
+
+        try {
+            pro.load(resourceAsStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pro;
+    }
 }

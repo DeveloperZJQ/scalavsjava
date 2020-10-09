@@ -20,7 +20,7 @@ public class SingletonMain {
         StaticInnerSingleton instanceOfStaticInner2 = StaticInnerSingleton.getInstance();
 
         //枚举读取配置文件
-        EnumSingleton.INSTANCE.m();
+        EnumSingleton.INSTANCE.getFileConfig("fileName");
 
         System.out.println(instance1.equals(instance2));
     }
