@@ -1,4 +1,4 @@
-package designpatterns;
+package designpatterns.singleton;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,11 +7,18 @@ import java.util.Properties;
 /**
  * @author happy
  * @since 2020-10-09
- * 1)线程安全问题。因为Java虚拟机在加载枚举类的时候会使用ClassLoader的方法，这个方法使用了同步代码块来保证线程安全。
- * 2）避免反序列化破坏对象，因为枚举的反序列化并不通过反射实现
  */
-public enum  EnumSingleton {
-    INSTANCE;
+public class StaticInnerSingleton {
+    private StaticInnerSingleton(){};
+
+    private static class StaticInnerSingletonIntance{
+        private static final StaticInnerSingleton instance = new StaticInnerSingleton();
+    }
+
+    public static StaticInnerSingleton getInstance(){
+        return StaticInnerSingletonIntance.instance;
+    }
+
     //get local file config
     public Properties getFileConfig(String fileName){
         Properties pro = new Properties();
