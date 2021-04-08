@@ -1,4 +1,4 @@
-package com.demo.datastruct.linkedlist;
+package datastruct.linkedlist;
 
 /**
  * @author happy

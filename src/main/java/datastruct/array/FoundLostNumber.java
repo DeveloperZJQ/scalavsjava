@@ -1,4 +1,4 @@
-package com.demo.datastruct.array;
+package datastruct.array;
 
 import java.util.ArrayList;
 import java.util.BitSet;
