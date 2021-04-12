@@ -6,20 +6,21 @@ import java.util.Properties;
 
 /**
  * @author happy
- * @since 2020-10-09
- * 饿汉式 方式一 : 静态常量饿汉式
+ * @since 2021-04-11
+ * 饿汉式 方式二 : 静态代码块饿汉式
  */
-public class StarvationSingleton {
-
-    private static final StarvationSingleton starvationInstance = new StarvationSingleton();
-
-    private StarvationSingleton() {
+public class StarvationSingleton2 {
+    private StarvationSingleton2() {
     }
 
-    ;
+    private static StarvationSingleton2 instance;
 
-    public static StarvationSingleton getInstance() {
-        return starvationInstance;
+    static {
+        instance = new StarvationSingleton2();
+    }
+
+    public static StarvationSingleton2 getInstance() {
+        return instance;
     }
 
     /**
@@ -38,8 +39,8 @@ public class StarvationSingleton {
     }
 
     public static void main(String[] args) {
-        StarvationSingleton instance1 = StarvationSingleton.getInstance();
-        StarvationSingleton instance2 = StarvationSingleton.getInstance();
+        StarvationSingleton2 instance1 = StarvationSingleton2.getInstance();
+        StarvationSingleton2 instance2 = StarvationSingleton2.getInstance();
         System.out.println(instance1==instance2);
         System.out.println(instance1);
         System.out.println(instance2);

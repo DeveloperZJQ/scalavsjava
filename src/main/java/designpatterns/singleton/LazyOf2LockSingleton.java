@@ -7,8 +7,10 @@ import java.util.Properties;
 /**
  * @author happy
  * @since 2020-10-09
+ * 懒汉式 方式二
  */
 public class LazyOf2LockSingleton {
+    //volatile 保证可见性
     private static volatile LazyOf2LockSingleton lazyOf2LockSingleton;
 
     private LazyOf2LockSingleton() {
@@ -18,8 +20,7 @@ public class LazyOf2LockSingleton {
 
     /**
      * 懒汉式单例-双重锁
-     *
-     * @return
+     * 解决线程安全问题、同时解决懒加载问题
      */
     public static LazyOf2LockSingleton getInstance() {
         if (lazyOf2LockSingleton == null) {
