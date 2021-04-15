@@ -1,10 +1,10 @@
-package designpatterns.factory.simple.pizzastore.pizza;
+package designpatterns.factory.simplefactory.pizzastore.pizza;
 
 /**
  * @author happy
  * @since 2021-04-12
  */
-public class GreekPizza extends Pizza {
+public class CheesePizza extends Pizza {
     @Override
     public void prepare() {
 

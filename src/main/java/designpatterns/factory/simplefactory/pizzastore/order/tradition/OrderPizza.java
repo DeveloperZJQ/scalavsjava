@@ -1,9 +1,9 @@
-package designpatterns.factory.simple.pizzastore.order.tradition;
+package designpatterns.factory.simplefactory.pizzastore.order.tradition;
 
-import designpatterns.factory.simple.pizzastore.pizza.CheesePizza;
-import designpatterns.factory.simple.pizzastore.pizza.GreekPizza;
-import designpatterns.factory.simple.pizzastore.pizza.PepperPizza;
-import designpatterns.factory.simple.pizzastore.pizza.Pizza;
+import designpatterns.factory.simplefactory.pizzastore.pizza.CheesePizza;
+import designpatterns.factory.simplefactory.pizzastore.pizza.GreekPizza;
+import designpatterns.factory.simplefactory.pizzastore.pizza.PepperPizza;
+import designpatterns.factory.simplefactory.pizzastore.pizza.Pizza;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

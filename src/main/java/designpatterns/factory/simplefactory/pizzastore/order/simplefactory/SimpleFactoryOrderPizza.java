@@ -1,6 +1,6 @@
-package designpatterns.factory.simple.pizzastore.order.simplefactory;
+package designpatterns.factory.simplefactory.pizzastore.order.simplefactory;
 
-import designpatterns.factory.simple.pizzastore.pizza.Pizza;
+import designpatterns.factory.simplefactory.pizzastore.pizza.Pizza;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

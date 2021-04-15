@@ -1,4 +1,4 @@
-package designpatterns.factory.simple.pizzastore.pizza;
+package designpatterns.factory.simplefactory.pizzastore.pizza;
 
 /**
  * @author happy
