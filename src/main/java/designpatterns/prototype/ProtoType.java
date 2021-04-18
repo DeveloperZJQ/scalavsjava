@@ -14,10 +14,9 @@ public class ProtoType {
         System.out.println("clonePerson-->"+clonePerson);
          */
         //深拷贝
-        Person protoTypeDeepPerson = new Person("小菜鸟","程序员",new Computer("red","acer"));
+        Person protoTypeDeepPerson = new Person("小菜鸟", "程序员", new Computer("red", "acer"));
         Person cloneDeepPerson = (Person) protoTypeDeepPerson.clone();
-        System.out.println("protoTypePerson-->"+protoTypeDeepPerson);
-        System.out.println("clonePerson-->"+cloneDeepPerson);
-
+        System.out.println("protoTypePerson-->" + protoTypeDeepPerson);
+        System.out.println("clonePerson-->" + cloneDeepPerson);
     }
 }
