@@ -20,7 +20,7 @@ public class Collections {
         // 生成的 map 集合中只有一个键值对：{version=6.28}
         Map<String, Double> map = pairArrayList.stream().collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue, (v1, v2) -> v2));
-
+        System.out.println(map);
         List<Pair<String, Double>> pairs = pairArrayList.subList(0, 2);
         for (Pair<String, Double> pair : pairs) {
             System.out.println(pair);

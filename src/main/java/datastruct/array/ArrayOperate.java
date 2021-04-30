@@ -2,7 +2,7 @@ package datastruct.array;
 
 /**
  * @author happy
- * @create 2020-06-07 10:31
+ * @since  2020-06-07 10:31
  */
 public class ArrayOperate {
 
