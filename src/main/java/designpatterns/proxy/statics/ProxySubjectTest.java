@@ -1,4 +1,4 @@
-package designpatterns.proxy.demo1;
+package designpatterns.proxy.statics;
 
 /**
  * @author happy

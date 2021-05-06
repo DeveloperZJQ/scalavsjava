@@ -1,4 +1,4 @@
-package designpatterns.proxy.demo1;
+package designpatterns.proxy.statics;
 
 import java.util.Objects;
 
@@ -20,10 +20,10 @@ public class ProxySubjectImpl implements Subject {
     }
 
     public static void preRequest() {
-        System.out.println("预处理");
+        System.out.println("访问真实主题之前的预处理");
     }
 
     public static void callBack() {
-        System.out.println("事后处理");
+        System.out.println("访问真实主题之后的事后处理");
     }
 }

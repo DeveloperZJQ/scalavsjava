@@ -1,4 +1,4 @@
-package designpatterns.proxy.demo1;
+package designpatterns.proxy.statics;
 
 /**
  * @author happy
@@ -7,6 +7,6 @@ package designpatterns.proxy.demo1;
 public class RealSubjectImpl implements Subject {
     @Override
     public void request() {
-        System.out.println("真实主题");
+        System.out.println("访问真实主题。");
     }
 }
