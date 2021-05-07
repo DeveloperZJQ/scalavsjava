@@ -12,6 +12,6 @@ public class BuildClient {
         //准备创建房子的指挥者
         HouseDirector houseDirector = new HouseDirector(houseBuilder);
         //完成盖房子,返回产品-房子
-        House house = houseDirector.constructHouse();
+        houseDirector.constructHouse();
     }
 }

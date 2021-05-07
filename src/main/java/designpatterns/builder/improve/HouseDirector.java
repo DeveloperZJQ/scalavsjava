@@ -5,20 +5,15 @@ package designpatterns.builder.improve;
  * @since 2021-04-17
  */
 public class HouseDirector {
-    HouseBuilder houseBuilder = null;
+    HouseBuilder houseBuilder ;
 
     public HouseDirector(HouseBuilder houseBuilder) {
         this.houseBuilder = houseBuilder;
     }
 
-    public void setHouseBuilder(HouseBuilder houseBuilder) {
-        this.houseBuilder = houseBuilder;
-    }
-
-    public House constructHouse(){
+    public void constructHouse(){
         houseBuilder.buildBasic();
         houseBuilder.buildWalls();
         houseBuilder.buildProof();
-        return houseBuilder.getHouse();
     }
 }

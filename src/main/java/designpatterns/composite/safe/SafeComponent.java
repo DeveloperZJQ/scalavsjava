@@ -6,6 +6,6 @@ package designpatterns.composite.safe;
  * @author happy
  * @since 2021-05-05
  */
-public interface Component {
+public interface SafeComponent {
     void operator();
 }
