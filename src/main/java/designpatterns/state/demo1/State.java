@@ -1,4 +1,4 @@
-package designpatterns.state;
+package designpatterns.state.demo1;
 
 /**
  * 抽象状态类

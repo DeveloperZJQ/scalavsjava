@@ -1,4 +1,4 @@
-package designpatterns.state;
+package designpatterns.state.demo1;
 
 /**
  * 具体状态实现类A
