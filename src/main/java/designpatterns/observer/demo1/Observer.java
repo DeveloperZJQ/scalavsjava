@@ -1,4 +1,4 @@
-package designpatterns.observer.demo;
+package designpatterns.observer.demo1;
 
 /**
  * 抽象观察者

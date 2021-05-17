@@ -1,4 +1,4 @@
-package designpatterns.observer.demo;
+package designpatterns.observer.demo1;
 
 /**
  * @author happy
