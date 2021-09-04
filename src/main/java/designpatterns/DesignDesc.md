@@ -6,3 +6,6 @@
 # 设计模式大卡推荐
 ## 1. 非常详细 https://www.cnblogs.com/lgg20/category/1490666.html
 ## 2. 视频课程 https://www.bilibili.com/video/BV1G4411c7N4?t=37&p=71
+
+
+# 第一遍学习完成于2021-05-19
