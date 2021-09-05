@@ -1,4 +1,4 @@
-package datastruct.array.leetcode;
+package datastruct.leetcode;
 
 import java.util.HashMap;
 import java.util.Map;
