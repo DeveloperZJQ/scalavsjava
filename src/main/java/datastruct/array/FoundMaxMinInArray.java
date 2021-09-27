@@ -2,7 +2,7 @@ package datastruct.array;
 
 /**
  * @author happy
- * @create 2020-06-04 07:18
+ * @since 2020-06-04 07:18
  * 如何在未排序的整数数组中找到最大和最小的数字？
  */
 public class FoundMaxMinInArray {
@@ -11,12 +11,12 @@ public class FoundMaxMinInArray {
 
         int max = arr[0];
         int min = arr[0];
-        for (int a = 0; a<arr.length;a++){
-            if (arr[a]>max){
-                max=arr[a];
+        for (int i : arr) {
+            if (i > max) {
+                max = i;
             }
-            if (arr[a]<min){
-                min=arr[a];
+            if (i < min) {
+                min = i;
             }
         }
 
