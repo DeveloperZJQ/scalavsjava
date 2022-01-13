@@ -1,7 +1,5 @@
 package designpatterns.state.demo1;
 
-import designpatterns.state.demo1.State;
-
 /**
  * 状态上下文
  *

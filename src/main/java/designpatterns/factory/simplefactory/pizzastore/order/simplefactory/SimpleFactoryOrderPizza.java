@@ -21,8 +21,9 @@ public class SimpleFactoryOrderPizza {
     }
 
     public void setSimpleFactory(SimpleFactory simpleFactory) {
-        String orderType = ""; //用户输入
+        String orderType; //用户输入
         this.simpleFactory = simpleFactory; //设置简单工厂对象
+
         do {
             orderType = getType();
             pizza = this.simpleFactory.createOrderPizza(orderType);
