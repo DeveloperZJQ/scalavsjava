@@ -11,27 +11,39 @@ public class SynchronizedDemo {
     static int count = 0;
 
     public static void main(String[] args) throws InterruptedException {
+
+        Room room = new Room();
         Thread t1 = new Thread(() -> {
             for (int i = 0; i < 50000; i++) {
-                synchronized (SynchronizedDemo.class) {
-                    System.out.println("t1-->" + count);
-                    ++count;
-                }
+                room.increment();
             }
         }, "t1");
 
         t1.start();
         Thread t2 = new Thread(() -> {
             for (int i = 0; i < 50000; i++) {
-                synchronized (SynchronizedDemo.class) {
-                    System.out.println("t2-->" + count);
-                    --count;
-                }
+                room.decrement();
             }
         }, "t2");
         t2.start();
 
         Thread.sleep(5000);
-        System.out.println(count);
+        System.out.println(room.getCount());
+    }
+}
+
+class Room {
+    private int count;
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public synchronized void decrement() {
+        count--;
+    }
+
+    public synchronized int getCount() {
+        return count;
     }
 }
