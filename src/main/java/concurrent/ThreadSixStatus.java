@@ -36,18 +36,15 @@ public class ThreadSixStatus {
         Thread t4 = new Thread(() -> {
             synchronized (ThreadSixStatus.class){
                 System.out.println("this is lock");
-                while (true){
-
+                try {
+                    t3.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }, "t4");
 
-        try {
-            t4.join();
-            t4.start();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        t4.start();
         Thread t5 = new Thread(() -> {
             synchronized (ThreadSixStatus.class){
                 System.out.println("this is block");
