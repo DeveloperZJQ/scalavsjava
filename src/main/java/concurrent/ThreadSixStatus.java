@@ -12,7 +12,7 @@ public class ThreadSixStatus {
 
         Thread t1 = new Thread(() -> {
             System.out.println("123");
-        },"t1");
+        }, "t1");
 
         t1.start();
 
@@ -30,11 +30,11 @@ public class ThreadSixStatus {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        },"t3");
+        }, "t3");
 
         t3.start();
         Thread t4 = new Thread(() -> {
-            synchronized (ThreadSixStatus.class){
+            synchronized (ThreadSixStatus.class) {
                 System.out.println("this is lock");
                 try {
                     t3.join();
@@ -46,17 +46,17 @@ public class ThreadSixStatus {
 
         t4.start();
         Thread t5 = new Thread(() -> {
-            synchronized (ThreadSixStatus.class){
+            synchronized (ThreadSixStatus.class) {
                 System.out.println("this is block");
             }
-        },"t5");
+        }, "t5");
 
         t5.start();
-        System.out.println("t0-->"+t0.getState());
-        System.out.println("t1-->"+t1.getState());
-        System.out.println("t2-->"+t2.getState());
-        System.out.println("t3-->"+t3.getState());
-        System.out.println("t4-->"+t4.getState());
-        System.out.println("t5-->"+t5.getState());
+        System.out.println("t0-->" + t0.getState());
+        System.out.println("t1-->" + t1.getState());
+        System.out.println("t2-->" + t2.getState());
+        System.out.println("t3-->" + t3.getState());
+        System.out.println("t4-->" + t4.getState());
+        System.out.println("t5-->" + t5.getState());
     }
 }
