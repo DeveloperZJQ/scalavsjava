@@ -16,30 +16,26 @@ public class TestThreadPool {
         MyThreadPool myThreadPool = new MyThreadPool(5, 1000, TimeUnit.MILLISECONDS, 10);
         for (int i = 0; i < 5; i++) {
             int j = i;
-            myThreadPool.execute(() -> {
-                System.out.println("{}" + j);
-            });
+            myThreadPool.execute(() -> System.out.println("{}" + j));
         }
     }
 }
 
 @FunctionalInterface
 interface RejectPolicy<T> {
-    void reject(BlockingQueue<T> queue,Runnable task);
+    void reject(BlockingQueue<T> queue, Runnable task);
 }
 
 class MyThreadPool {
-    //1. 任务队列
-    private BlockingQueue<Runnable> taskQueue;
-
-    //2. 线程集合
-    private HashSet<Worker> workers = new HashSet<>();
-
+    //任务队列
+    private final BlockingQueue<Runnable> taskQueue;
+    //线程集合
+    private final HashSet<Worker> workers = new HashSet<>();
     //线程核心数量
-    private int coreSize;
-
+    private final int coreSize;
     //获取任务的超时时间
     private long timeout;
+    //获取超时时间单位
     private TimeUnit timeUnit;
 
     public void execute(Runnable task) {
@@ -103,18 +99,18 @@ class MyThreadPool {
 
 class BlockingQueue<T> {
     // 任务队列
-    private Deque<T> queue = new ArrayDeque<>();
+    private final Deque<T> queue = new ArrayDeque<>();
 
     //lock
-    private ReentrantLock lock = new ReentrantLock();
+    private final ReentrantLock lock = new ReentrantLock();
 
     //生产者环境变量
-    private Condition fullWaitSet = lock.newCondition();
+    private final Condition fullWaitSet = lock.newCondition();
     //消费者环境变量
-    private Condition emptyWaitSet = lock.newCondition();
+    private final Condition emptyWaitSet = lock.newCondition();
 
     //initCapacity
-    private int capacity;
+    private final int capacity;
 
     public BlockingQueue(int capacity) {
         this.capacity = capacity;
@@ -137,8 +133,7 @@ class BlockingQueue<T> {
                     e.printStackTrace();
                 }
             }
-            T t = queue.removeFirst();
-            return t;
+            return queue.removeFirst();
         } finally {
             lock.unlock();
         }
@@ -155,8 +150,7 @@ class BlockingQueue<T> {
                     e.printStackTrace();
                 }
             }
-            T t = queue.removeFirst();
-            return t;
+            return queue.removeFirst();
         } finally {
             lock.unlock();
         }
