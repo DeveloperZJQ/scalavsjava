@@ -150,6 +150,7 @@ class BlockingQueue<T> {
                     e.printStackTrace();
                 }
             }
+            fullWaitSet.signal();
             return queue.removeFirst();
         } finally {
             lock.unlock();

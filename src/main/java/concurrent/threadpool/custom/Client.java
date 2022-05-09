@@ -1,15 +1,22 @@
 package concurrent.threadpool.custom;
 
+import java.util.concurrent.TimeUnit;
+
 /**
- * @author happy
- * @since 2022/5/9
+ * @author DeveloperZJQ
+ * @since 2022-5-9
  */
 public class Client {
     public static void main(String[] args) {
-        ThreadPool threadPool = new ThreadPool(5, 2);
+        CustomThreadPool customThreadPool = new CustomThreadPool(2, 10,1, TimeUnit.MILLISECONDS);
         for (int i = 0; i < 10; i++) {
             int j = i;
-            threadPool.execute(() -> {
+            customThreadPool.execute(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("{}:" + j);
             });
         }
