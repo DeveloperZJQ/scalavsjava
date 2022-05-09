@@ -16,22 +16,17 @@ public class BlockingQueue<T> {
     private final ReentrantLock lock = new ReentrantLock();
     private final Condition producer = lock.newCondition();
     private final Condition consumer = lock.newCondition();
-    private long timeout;
-    private TimeUnit timeUnit;
 
-    public BlockingQueue(int capacity, int timeout, TimeUnit timeUnit) {
+    public BlockingQueue(int capacity) {
         this.capacity = capacity;
-        this.timeout = timeout;
-        this.timeUnit = timeUnit;
     }
 
     public void put(T task) {
         lock.lock();
         try {
-            long nanos = timeUnit.toNanos(timeout);
             while (queue.size() == capacity) {
                 try {
-                    nanos = producer.awaitNanos(nanos);
+                    producer.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -46,9 +41,30 @@ public class BlockingQueue<T> {
     public T take() {
         lock.lock();
         try {
+            while (queue.isEmpty()) {
+                try {
+                    consumer.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            producer.signal();
+            return queue.removeFirst();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public T poll(int timeout, TimeUnit timeUnit) {
+        lock.lock();
+        try {
             long nanos = timeUnit.toNanos(timeout);
             while (queue.isEmpty()) {
                 try {
+                    // 超时返回null
+                    if (nanos < 0) {
+                        return null;
+                    }
                     nanos = consumer.awaitNanos(nanos);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

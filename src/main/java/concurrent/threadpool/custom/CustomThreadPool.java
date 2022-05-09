@@ -12,8 +12,8 @@ public class CustomThreadPool {
     private final BlockingQueue<Runnable> tasks;
     private final HashSet<Worker> workers = new HashSet<>();
 
-    public CustomThreadPool(int coreSize, int capacity,int timeout,TimeUnit timeUnit) {
-        this.tasks = new BlockingQueue<>(capacity,timeout,timeUnit);
+    public CustomThreadPool(int coreSize, int capacity) {
+        this.tasks = new BlockingQueue<>(capacity);
         this.coreSize = coreSize;
     }
 
@@ -38,7 +38,9 @@ public class CustomThreadPool {
 
         @Override
         public void run() {
-            while (task != null || (task = tasks.take()) != null) {
+//            while (task != null || (task = tasks.take()) != null) {
+            // poll 超时worker被移除
+            while (task != null || (task = tasks.poll(1, TimeUnit.SECONDS)) != null) {
                 try {
                     task.run();
                 } finally {
