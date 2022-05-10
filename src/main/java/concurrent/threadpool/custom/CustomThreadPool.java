@@ -11,20 +11,29 @@ public class CustomThreadPool {
     private final int coreSize;
     private final BlockingQueue<Runnable> tasks;
     private final HashSet<Worker> workers = new HashSet<>();
+    private final RejectPolicy<Runnable> rejectPolicy;
 
-    public CustomThreadPool(int coreSize, int capacity) {
+    public CustomThreadPool(int coreSize, int capacity, RejectPolicy<Runnable> rejectPolicy) {
         this.tasks = new BlockingQueue<>(capacity);
         this.coreSize = coreSize;
+        this.rejectPolicy = rejectPolicy;
     }
 
     public void execute(Runnable task) {
         synchronized (workers) {
             if (workers.size() < coreSize) {
                 Worker worker = new Worker(task);
-                worker.start();
                 workers.add(worker);
+                worker.start();
             } else {
-                tasks.put(task);
+                //1. 死等
+//                tasks.put(task);
+                //2. 带超时的等待
+                // tasks.offer(task,10,TimeUnit.SECONDS);
+                //3. 放弃任务执行
+                //4. 让调用者抛出异常
+                //5. 让调用者自己执行任务
+                tasks.tryPut(rejectPolicy, task);
             }
         }
     }
@@ -39,7 +48,7 @@ public class CustomThreadPool {
         @Override
         public void run() {
 //            while (task != null || (task = tasks.take()) != null) {
-            // poll 超时worker被移除
+                // poll 超时worker被移除
             while (task != null || (task = tasks.poll(1, TimeUnit.SECONDS)) != null) {
                 try {
                     task.run();
@@ -54,4 +63,10 @@ public class CustomThreadPool {
             }
         }
     }
+}
+
+//拒绝策略
+@FunctionalInterface
+interface RejectPolicy<T> {
+    void reject(BlockingQueue<T> queue, T task);
 }
