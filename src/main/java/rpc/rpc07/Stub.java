@@ -1,7 +1,4 @@
-package rpc.rpc04;
-
-import rpc.common.IUserService;
-import rpc.entity.User;
+package rpc.rpc07;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -11,38 +8,43 @@ import java.lang.reflect.Proxy;
 import java.net.Socket;
 
 /**
- * 而且client的调用显得不是很合理（Stub里只有findById的代码），如果有个findByName的新方法，那么就又得重新改进
- * 下面这种写法解决了方法增加的问题
+ * 但是这里仅仅实现了findByUserId的方法代理，如果要实现其它方法的代理该怎么做呢？
+ * <p>
+ * 这里就要从协议层做出改进
+ * <p>
+ * 服务器端也要做出对应处理
  *
  * @author happy
  * @since 2022/8/28
  */
 public class Stub {
-    public static IUserService getStub() {
+    public static Object getStub(Class clazz) {
         InvocationHandler h = new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 Socket socket = new Socket("127.0.0.1", 8888);
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                 // 方法名
+                String clazzName = clazz.getName();
                 String methodName = method.getName();
                 // 参数类型
                 Class<?>[] parameterTypes = method.getParameterTypes();
+                oos.writeUTF(clazzName);
                 oos.writeUTF(methodName);
                 oos.writeObject(parameterTypes);
                 oos.writeObject(args);
                 oos.flush();
 
                 ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-                User user = (User) ois.readObject();
+                Object o = ois.readObject();
                 oos.close();
                 socket.close();
-                return user;
+                return o;
             }
         };
-        Object o = Proxy.newProxyInstance(IUserService.class.getClassLoader(), new Class[]{IUserService.class}, h);
+        Object o = Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, h);
         System.out.println(o.getClass().getName());
         System.out.println(o.getClass().getInterfaces()[0]);
-        return (IUserService) o;
+        return o;
     }
 }

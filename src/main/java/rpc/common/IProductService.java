@@ -5,4 +5,5 @@ package rpc.common;
  * @since 2022/8/28
  */
 public interface IProductService {
+    Product findProductById(Integer id);
 }

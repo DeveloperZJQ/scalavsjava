@@ -1,9 +1,9 @@
-package rpc.rpc04;
+package rpc.rpc05;
 
 import rpc.common.IUserService;
 import rpc.entity.User;
 
-import java.io.ObjectInputStream;
+import java.io.DataInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -33,8 +33,10 @@ public class Stub {
                 oos.writeObject(args);
                 oos.flush();
 
-                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-                User user = (User) ois.readObject();
+                DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+                int id = dataInputStream.readInt();
+                String name = dataInputStream.readUTF();
+                User user = new User(id, name);
                 oos.close();
                 socket.close();
                 return user;
