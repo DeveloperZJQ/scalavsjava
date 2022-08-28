@@ -19,6 +19,54 @@ public class Student {
         this.grade = builder.grade;
     }
 
+    public Student(Integer id, String name, Integer age, String clazz, Integer grade) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.clazz = clazz;
+        this.grade = grade;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
+
     public static class Builder {
         private Integer id;
         private String name;
