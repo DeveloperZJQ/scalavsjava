@@ -104,16 +104,14 @@ public class Student {
         }
     }
 
-
-    public static void main(String[] args) {
-        Student student = new Builder()
-                .id(1)
-                .name("san")
-                .age(30)
-                .clazz("123")
-                .grade(2)
-                .build();
-
-        System.out.println(student);
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", clazz='" + clazz + '\'' +
+                ", grade=" + grade +
+                '}';
     }
 }
