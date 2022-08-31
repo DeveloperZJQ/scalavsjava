@@ -16,7 +16,7 @@ public enum EnumSingleton {
     //get local file config
     public Properties getFileConfig(String fileName) {
         Properties pro = new Properties();
-        InputStream resourceAsStream = LazyOf2LockSingleton.class.getClassLoader().getResourceAsStream("demo.properties");
+        InputStream resourceAsStream = EnumSingleton.class.getClassLoader().getResourceAsStream("demo.properties");
         try {
             pro.load(resourceAsStream);
         } catch (IOException e) {
