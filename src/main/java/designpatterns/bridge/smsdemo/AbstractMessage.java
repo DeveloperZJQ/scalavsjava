@@ -2,7 +2,7 @@ package designpatterns.bridge.smsdemo;
 
 /**
  * @author happy
- * @link https://www.cnblogs.com/lgg20/p/11095537.html
+ * @link <a href="https://www.cnblogs.com/lgg20/p/11095537.html">...</a>
  * @since 2021-04-20
  */
 public abstract class AbstractMessage {
