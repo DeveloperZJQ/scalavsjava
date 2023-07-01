@@ -37,6 +37,7 @@ public class DistinctEntityByStream {
                 .filter(distinctByKey(Teacher::getId))
                 .sorted(Comparator.comparing(Teacher::getId))
                 .collect(Collectors.toList());
+        teacherList.forEach(System.out::println);
     }
 
     private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
@@ -90,6 +91,15 @@ public class DistinctEntityByStream {
         @Override
         public int hashCode() {
             return Objects.hash(id, name, age);
+        }
+
+        @Override
+        public String toString() {
+            return "Teacher{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
         }
     }
 
